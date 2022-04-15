@@ -17,6 +17,7 @@
 		F4A5574227F593EF004CFE34 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A5574127F593EF004CFE34 /* Person.m */; };
 		F4E3243127FFD46800B443A0 /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E3243027FFD46800B443A0 /* Dog.m */; };
 		F4E3243727FFDBF500B443A0 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E3243627FFDBF500B443A0 /* Student.m */; };
+		F4E3243B28085A6300B443A0 /* TaggedPointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E3243A28085A6300B443A0 /* TaggedPointTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		F4E3243527FFDBF500B443A0 /* Student.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		F4E3243627FFDBF500B443A0 /* Student.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		F4E3243828081A4300B443A0 /* StudyProConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyProConst.h; sourceTree = "<group>"; };
+		F4E3243928085A6300B443A0 /* TaggedPointTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaggedPointTest.h; sourceTree = "<group>"; };
+		F4E3243A28085A6300B443A0 /* TaggedPointTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaggedPointTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				F4A5573827F59334004CFE34 /* Info.plist */,
 				F4A5573927F59334004CFE34 /* main.m */,
 				F4E3243828081A4300B443A0 /* StudyProConst.h */,
+				F4E3243928085A6300B443A0 /* TaggedPointTest.h */,
+				F4E3243A28085A6300B443A0 /* TaggedPointTest.m */,
 				F4A5574027F593EF004CFE34 /* Person.h */,
 				F4A5574127F593EF004CFE34 /* Person.m */,
 				F4E3243527FFDBF500B443A0 /* Student.h */,
@@ -164,6 +169,7 @@
 			files = (
 				F4E3243727FFDBF500B443A0 /* Student.m in Sources */,
 				F4A5574227F593EF004CFE34 /* Person.m in Sources */,
+				F4E3243B28085A6300B443A0 /* TaggedPointTest.m in Sources */,
 				F4A5572F27F5932F004CFE34 /* ViewController.m in Sources */,
 				F4A5572927F5932F004CFE34 /* AppDelegate.m in Sources */,
 				F4E3243127FFD46800B443A0 /* Dog.m in Sources */,

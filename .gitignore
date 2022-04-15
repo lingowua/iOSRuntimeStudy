@@ -1,4 +1,8 @@
 *.xcworkspace
-xcuserdata
-xcodeproj/Pods
+*.xcodeproj
+*.xcuserdata
+StudyPro/StudyPro.xcodeproj/
 xcodeproj/.DS_Store
+.gitignore
+.DS_Store
+

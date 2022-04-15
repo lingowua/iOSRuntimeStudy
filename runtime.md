@@ -8,9 +8,9 @@
 
 `Runtime`其实有两个版本: “`modern`” 和 “`legacy`”。我们现在用的 `Objective-C 2.0` 采用的是现行 (`Modern`) 版的 `Runtime` 系统，只能运行在 `iOS` 和 `macOS 10.5` 之后的 `64` 位程序中。而 `macOS` 较老的`32`位程序仍采用 `Objective-C 1` 中的（早期）`Legacy` 版本的 `Runtime` 系统。这两个版本最大的区别在于当你更改一个类的实例变量的布局时，在早期版本中你需要重新编译它的子类，而现行版就不需要。
 
-`Runtime` 基本是用 `C` 和`汇编`写的，可见苹果为了动态系统的高效而作出的努力。你可以在[这里](https://link.juejin.cn?target=http%3A%2F%2Fwww.opensource.apple.com%2Fsource%2Fobjc4%2F)下到苹果维护的开源代码。苹果和GNU各自维护一个开源的 [runtime](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FRetVal%2Fobjc-runtime) 版本，这两个版本之间都在努力的保持一致。
+`Runtime` 基本是用 `C` 和`汇编`写的，可见苹果为了动态系统的高效而作出的努力。你可以在[这里](https://opensource.apple.com/source/objc4/)下到苹果维护的开源代码。苹果和GNU各自维护一个开源的 [runtime](https://github.com/RetVal/objc-runtime) 版本，这两个版本之间都在努力的保持一致。
 
-平时的业务中主要是使用[官方Api](https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.apple.com%2Freference%2Fobjectivec%2Fobjective_c_runtime%23%2F%2Fapple_ref%2Fdoc%2Fuid%2FTP40001418-CH1g-126286)，解决我们框架性的需求。
+平时的业务中主要是使用[官方Api](https://developer.apple.com/documentation/objectivec/objective-c_runtime?language=objc)，解决我们框架性的需求。
 
 高级编程语言想要成为可执行文件需要先编译为汇编语言再汇编为机器语言，机器语言也是计算机能够识别的唯一语言，但是`OC`并不能直接编译为汇编语言，而是要先转写为纯`C`语言再进行编译和汇编的操作，从`OC`到`C`语言的过渡就是由runtime来实现的。然而我们使用`OC`进行面向对象开发，而`C`语言更多的是面向过程开发，这就需要将面向对象的类转变为面向过程的结构体。
 
@@ -18,7 +18,7 @@
 
 首先看一下 源码里面对于 类以及对象 的定义 
 
-这里需要注意一点：网上的教程大部分都是 runtime.h 里面的代码，但是这里大部分代码已经被注释废弃了就不参考了，详情可查看 [objc_class深深的误解 ](https://www.cnblogs.com/dahe007/p/10566033.html)
+这里需要注意一点：网上的教程大部分都是 `runtime.h` 里面的代码，但是这里大部分代码已经被注释废弃了就不参考了，详情可查看 [objc_class深深的误解 ](https://www.cnblogs.com/dahe007/p/10566033.html)
 
 
 
@@ -58,7 +58,7 @@ struct objc_class : objc_object {
 
 ```
 
-其中 objc-object 结构体最关键的就是 isa 属性，可以看到属于 isa_t 结构，可在源码中看具体定义
+其中 `objc-object` 结构体最关键的就是 `isa` 属性，可以看到属于 `isa_t` 结构，可在源码中看具体定义
 
 ```C++
 // isa_t 的定义 objc-private.h
@@ -90,7 +90,7 @@ public:
 };
 ```
 
-可以看到 isa_t 是一个共用体，包含了`ISA_BITFIELD`是一个宏(结构体)，`bits`是`uintptr_t`类型，`uintptr_t`其实是`unsign long`类型占用8字节，就是64位，我们进入到`ISA_BITFIELD`内部：
+可以看到 `isa_t` 是一个共用体，包含了`ISA_BITFIELD`是一个宏(结构体)，`bits`是`uintptr_t`类型，`uintptr_t`其实是`unsign long`类型占用8字节，就是64位，我们进入到`ISA_BITFIELD`内部：
 
 ```c++
 // uintptr_t 的定义  _uintptr_t.h
@@ -118,9 +118,9 @@ typedef unsigned long           uintptr_t;
 #endif
 ```
 
-这里 在不同平台（arm、x86_64等）下，对于 ISA_BITFIELD 的定义是不同的，不过对于学习原理来说，简单看一个就行，我这里截取的是iOS真机下的相关规则
+这里 在不同平台（`arm`、`x86_64`等）下，对于 `ISA_BITFIELD` 的定义是不同的，不过对于学习原理来说，简单看一个就行，我这里截取的是iOS真机下的相关规则
 
-其中，isa & ISA_MASK 就是将 shiftcls的值取出来，而shiftcls里存储的就是class对象、meta-class对象的地址 [参考](https://zhuanlan.zhihu.com/p/370427824)
+其中，`isa & ISA_MASK` 就是将 `shiftcls`的值取出来，而`shiftcls`里存储的就是`class`对象、`meta-class`对象的地址 [参考](https://zhuanlan.zhihu.com/p/370427824)
 
 其中有几个字段都和对象的释放有关，这里可以看下释放对象的源码
 
@@ -140,7 +140,7 @@ void *objc_destructInstance(id obj) {
 }
 ```
 
-可以看出，释放时候，会先判断是否有设置过关联对象，如果没有，释放时会更快。 是否有C++的析构函数（.cxx_destruct），如果没有，释放时会更快。其他的弱引用，nonpointer等，读者可自行看源码。
+可以看出，释放时候，会先判断是否有设置过关联对象，如果没有，释放时会更快。 是否有`C++`的析构函数`(.cxx_destruct)`，如果没有，释放时会更快。其他的弱引用，`nonpointer`等，读者可自行看源码。
 
 关于[Tagged Pointer](https://github.com/lingowua/iOSRuntimeStudy/blob/main/TaggedPointer.md)技术
 

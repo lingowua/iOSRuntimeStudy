@@ -11,14 +11,7 @@
 #import "Student.h"
 #import "Dog.h"
 #import "StudyProConst.h"
-
-//#define ISA_MASK        0x007ffffffffffff8ULL
-//#define ISA_MASK        0x0000000ffffffff8ULL
-//#define ISA_MASK        0x00007ffffffffff8ULL
-size_t malloc_size(const void *ptr);
-
-extern uintptr_t objc_debug_taggedpointer_obfuscator;
-#define DTag(num) ((uintptr_t)num ^ objc_debug_taggedpointer_obfuscator)
+#import "TaggedPointTest.h"
 
 #define HTLog(_var) \
 { \
@@ -48,41 +41,8 @@ extern uintptr_t objc_debug_taggedpointer_obfuscator;
 }
 
 - (void)tagpointerTest {
-    NSNumber *nu1 = @1, *nu2 = @2, *nu3 = @3, *nu4 = @(0xFFFF), *nu5 = @(0xEFFFFFFFFFFFFFFF);
-    // NSLog(@"解密前： %p %p %p %p %p", nu1, nu2, nu3, nu4, nu5);
-    NSLog(@"Number1: %lx %lx %lx %lx %lx", DTag(nu1), DTag(nu2), DTag(nu3), DTag(nu4), DTag(nu5));
-    
-    char a = 1;
-    short b = 1;
-    int c = 1;
-    long d = 1;
-    float e = 1.0;
-    double f = 1.00;
-    
-    NSNumber *n1 = @(a), *n2 = @(b), *n3 = @(c), *n4 = @(d), *n5 = @(e), *n6 = @(f);
-    // NSLog(@"%p %p %p %p %p %p", n1, n2, n3, n4, n5, n6);
-    NSLog(@"Number2: %lx %lx %lx %lx %lx %lx", DTag(n1), DTag(n2), DTag(n3), DTag(n4), DTag(n5), DTag(n6));
-    
-    NSString *s1 = [NSString stringWithFormat:@"a"];
-    NSString *s2 = [NSString stringWithFormat:@"ab"];
-    NSString *s3 = [NSString stringWithFormat:@"abc"];
-    NSString *s4 = [NSString stringWithFormat:@"abcd"];
-    NSString *s5 = [NSString stringWithFormat:@"lllllllll"];
-    NSString *s6 = [NSString stringWithFormat:@"abcdefghij"];
-    NSString *s7 = [NSString stringWithFormat:@"cdefghijkl"];
-    NSString *s8 = [NSString stringWithFormat:@"cdefghijklm"];
-    NSString *s9 = [NSString stringWithFormat:@"cdefghijklmn"];
-    printf("\n\n%p %p %p %p\n%p %p %p %p\n%p\n\n\n", s1, s2, s3, s4, s5, s6, s7, s8, s9);
-    NSLog(@"String: %p %p %p %p %p %p %p", s1, s2, s3, s4, s5, s6, s7);
-    NSLog(@"String: %lx %lx %lx %lx %lx %lx", DTag(s1), DTag(s2), DTag(s3), DTag(s4), DTag(s5), DTag(s6));
-    
-    Person *pp = [Person new];
-    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
-    for (int i = 0; i < 10000; i++) {
-        dispatch_async(queue, ^{
-            pp.name = [NSString stringWithFormat:@"abcdefghi"];
-        });
-    }
+    TaggedPointTest *tagTest = [TaggedPointTest new];
+    [tagTest show];
 }
 
 - (void)categoryMethodTest {

@@ -58,7 +58,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OBJC_DISABLE_TAG_OBFUSCATION"
-            value = "YES"
+            value = "NO"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
