@@ -12,7 +12,7 @@
 
 + (void)load { LGLog(@"%s", __FUNCTION__); }
 + (void)initialize { LGLog(@"%s", __FUNCTION__); }
-- (void)show { LGLog(@"%s : %@", __FUNCTION__, self.name); }
+- (void)show { NSLog(@"%s : %@", __FUNCTION__, self.name); }
 
 @end
 
@@ -21,7 +21,7 @@
 
 + (void)load { LGLog(@"%s", __FUNCTION__); }
 + (void)initialize { LGLog(@"%s", __FUNCTION__); }
-- (void)show { LGLog(@"%s : %@", __FUNCTION__, self.name); }
+- (void)show { NSLog(@"%s : %@", __FUNCTION__, self.name); }
 
 @end
 
@@ -30,6 +30,6 @@
 
 + (void)load { LGLog(@"%s", __FUNCTION__); }
 + (void)initialize { LGLog(@"%s", __FUNCTION__); }
-- (void)show { LGLog(@"%s : %@", __FUNCTION__, self.name); }
+- (void)show { NSLog(@"%s : %@", __FUNCTION__, self.name); }
 
 @end

@@ -93,9 +93,9 @@ const NSString *rcx = @"eilotrm.apdnsIc ufkMShjTRxgC4013bDNvwyUL2O856P-B79AFKEWV
     }
     for (int i = 0; i < 10000; i++) {
         dispatch_async(queue, ^{
-            // @synchronized (self) {
+            @synchronized (self) {
                 self.name = [NSString stringWithFormat:@"abcdefghij"];
-            // }
+            }
         });
     }
 }

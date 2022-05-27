@@ -13,7 +13,18 @@
 
 + (void)load { LGLog(@"%s", __FUNCTION__); }
 + (void)initialize { LGLog(@"%s", __FUNCTION__); }
-- (void)show { LGLog(@"%s : %@", __FUNCTION__, self.name);}
+- (void)show { NSLog(@"%s : %@", __FUNCTION__, self.name);}
+
+void eat(id self, SEL sel) {
+    NSLog(@"eat %@ %@", self, NSStringFromSelector(sel));
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)sel {
+    if (sel == @selector(eat)) {
+        class_addMethod(self, @selector(eat), eat, "v@:");
+    }
+    return [super resolveInstanceMethod:sel];
+}
 
 @end
 
@@ -25,7 +36,7 @@ static const char *kNamePro = "name1";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
-- (void)show { LGLog(@"%s  %@ %@", __FUNCTION__, self.name, self.name1);}
+- (void)show { NSLog(@"%s  %@ %@", __FUNCTION__, self.name, self.name1);}
 #pragma clang diagnostic pop
 
 + (void)load { LGLog(@"%s", __FUNCTION__); }
@@ -46,7 +57,7 @@ static const char *kNamePro = "name1";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
-- (void)show { LGLog(@"%s : %@", __FUNCTION__, self.name); }
+- (void)show { NSLog(@"%s : %@", __FUNCTION__, self.name); }
 #pragma clang diagnostic pop
 
 + (void)load { LGLog(@"%s", __FUNCTION__); }

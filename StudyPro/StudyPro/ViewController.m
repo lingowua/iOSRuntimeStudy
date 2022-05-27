@@ -28,7 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self tagpointerTest];
+    // [self addressTest];
+    // [self tagpointerTest];
+    // [self addMethodTest];
     // [self categoryMethodTest];
     // [self cxx_destructTest];
     // [self methodSwizzeTest];
@@ -40,9 +42,49 @@
     // [self copyClassList];
 }
 
+- (void)addressTest {
+    NSString *tt = @"teste", *tt1 = @"teasdtesdt";
+    
+    id cls = [Person class];
+    void *obj = &cls;
+    [(__bridge id)obj show];
+    
+    NSLog(@"ViewController = %@ , 地址 = %p", self, &self);
+    NSLog(@"Person class = %@ 地址 = %p", cls, &cls);
+    NSLog(@"Void *obj = %@ 地址 = %p", obj, &obj);
+    
+    Person *p = [Person new];
+    NSObject *n = [NSObject new];
+    [p show];
+    NSLog(@"Person instance = %@ 地址 = %p", p, &p);
+    
+    BOOL res1 = [[NSObject class] isKindOfClass:[NSObject class]];
+    BOOL res2 = [[NSObject class] isMemberOfClass:[NSObject class]];
+    BOOL res3 = [[Person class] isKindOfClass:[Person class]];
+    BOOL res4 = [[Person class] isMemberOfClass:[Person class]];
+    BOOL res5 = [n isKindOfClass:[NSObject class]];
+    BOOL res6 = [n isMemberOfClass:[NSObject class]];
+    BOOL res7 = [p isKindOfClass:[Person class]];
+    BOOL res8 = [p isMemberOfClass:[Person class]];
+
+    NSLog(@"%d %d %d %d", res1, res2, res3, res4);
+    NSLog(@"%d %d %d %d", res5, res6, res7, res8);
+}
+
 - (void)tagpointerTest {
     TaggedPointTest *tagTest = [TaggedPointTest new];
     [tagTest show];
+}
+
+- (void)addMethodTest {
+    Person *p = [Person new];
+    p.name1 = @"teast";
+    NSLog(@"%@", p.name1);
+    objc_removeAssociatedObjects(p);
+    NSLog(@"%@", p.name1);
+    if ([p respondsToSelector:@selector(eat)]) {
+        [p performSelector:@selector(eat)];
+    }
 }
 
 - (void)categoryMethodTest {
@@ -130,7 +172,7 @@
 
 - (void)showIvars {
     Person *p = [Person new];
-    p.name = @"test";
+    p.name1 = @"test";
     
     unsigned int outCount;
     Ivar *ivars = class_copyIvarList([Person class], &outCount);
@@ -150,6 +192,16 @@
         NSLog(@"实例变量名为：%s 字符串类型为：%s", ivarName, ivarType);
     }
     free(ivars);
+    
+    objc_property_t *pros = class_copyPropertyList([Person class], &outCount);
+
+    for (unsigned int i = 0; i < outCount; i++) {
+        objc_property_t o_t =  pros[i];
+        NSString *name = @(property_getName(o_t));
+        NSString *attributes = @(property_getAttributes(o_t));
+        NSLog(@"属性  %@  \t%@", name, attributes);
+    }
+    free(pros);
 }
 
 - (void)showClass {

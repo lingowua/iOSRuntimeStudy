@@ -20,10 +20,10 @@ static NSString *_varies = @"";
 }
 + (void)initialize { LGLog(@"%s", __FUNCTION__); }
 
-- (void)bark { LGLog(@"%s", __FUNCTION__); }
-- (void)eat { LGLog(@"%s", __FUNCTION__); }
-- (void)sleep { LGLog(@"%s", __FUNCTION__); }
-- (void)run { LGLog(@"%s", __FUNCTION__); }
+- (void)bark { NSLog(@"%s", __FUNCTION__); }
+- (void)eat { NSLog(@"%s", __FUNCTION__); }
+- (void)sleep { NSLog(@"%s", __FUNCTION__); }
+- (void)run { NSLog(@"%s", __FUNCTION__); }
 
 + (void)setVaries:(NSString *)vari {_varies = vari;}
 + (NSString *)varies { return _varies; }
@@ -51,10 +51,10 @@ static NSString *_variesd = @"";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
-- (void)bark { LGLog(@"%s", __FUNCTION__); }
-- (void)eat { LGLog(@"%s", __FUNCTION__); }
-- (void)sleep { LGLog(@"%s", __FUNCTION__); }
-- (void)run { LGLog(@"%s", __FUNCTION__); }
+- (void)bark { NSLog(@"%s", __FUNCTION__); }
+- (void)eat { NSLog(@"%s", __FUNCTION__); }
+- (void)sleep { NSLog(@"%s", __FUNCTION__); }
+- (void)run { NSLog(@"%s", __FUNCTION__); }
 #pragma clang diagnostic pop
 
 @end
