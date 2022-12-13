@@ -825,6 +825,7 @@ void cache_t::bad_cache(id receiver, SEL sel)
 
 void cache_t::insert(SEL sel, IMP imp, id receiver)
 {
+    // printf("------ sel = %s     imp = %p     receiver = %p\n", (char *)sel, imp, receiver);
     runtimeLock.assertLocked();
 
     // Never cache before +initialize is done
@@ -849,6 +850,18 @@ void cache_t::insert(SEL sel, IMP imp, id receiver)
     // Use the cache as-is if until we exceed our expected fill ratio.
     mask_t newOccupied = occupied() + 1;
     unsigned oldCapacity = capacity(), capacity = oldCapacity;
+    int cnt = oldCapacity;
+    
+    if (sel == @selector(smileToLife)) {
+        bucket_t *xj_b = buckets();
+        for (int i = 0; i < cnt - 1; i++) {
+            SEL xj_sel = xj_b[i].sel();
+            IMP xj_imp = xj_b[i].imp(xj_b, nil);
+            printf("------ sel = %s     imp = %p     receiver = %p\n", (char *)xj_sel, xj_imp, &xj_b[i]);
+        }
+        printf("cap: %u\n", oldCapacity);
+    }
+    
     if (slowpath(isConstantEmptyCache())) {
         // Cache is read-only. Replace it.
         if (!capacity) capacity = INIT_CACHE_SIZE;

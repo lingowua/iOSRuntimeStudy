@@ -12,6 +12,7 @@
 #import "Dog.h"
 #import "StudyProConst.h"
 #import "TaggedPointTest.h"
+#import "SDSingleDog.h"
 
 #define HTLog(_var) \
 { \
@@ -19,15 +20,31 @@
     NSLog(@"%@: %p, %@", name, _var, [_var class]); \
 }
 
-@interface ViewController ()
-
+@interface A : NSObject
+@property (copy) NSString *name;
 @end
 
-@implementation ViewController
+@implementation A
+- (void)print {
+    NSLog(@"%@", _name);
+    // NSLog(@"%s", _name.UTF8String);
+    // NSLog(@"%s", (__bridge char *)_name);
+    // NSLog(@"%s", (__bridge void *)_name);
+}
+@end
 
+
+@implementation ViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    id cls = [A class];
+    void *obj = &cls;
+    [((__bridge id)obj) print];
+    
+    [[SDSingleDog new] methodTest];
+    
+    // [self allocTest];
     // [self addressTest];
     // [self tagpointerTest];
     // [self addMethodTest];
@@ -40,6 +57,20 @@
     // [self classLifeCycle];
     // [self getClassList];
     // [self copyClassList];
+}
+
+- (void)allocTest {
+    Person *p1 = [Person alloc];
+    Person *p2 = [p1 init];
+    Person *p3 = [p1 init];
+    
+    Person *p4 = [Person alloc];
+    
+    NSLog(@"%@-%p-%p", p1, p1, &p1);
+    NSLog(@"%@-%p-%p", p2, p2, &p2);
+    NSLog(@"%@-%p-%p", p3, p3, &p3);
+    
+    NSLog(@"%@-%p-%p", p4, p4, &p4);
 }
 
 - (void)addressTest {

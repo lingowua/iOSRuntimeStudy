@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F43D6C862851CF3E00C171F1 /* SDSingleDog.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D6C842851CF3E00C171F1 /* SDSingleDog.m */; };
+		F43D6C892851F31D00C171F1 /* NSObject+MethodTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D6C882851F31D00C171F1 /* NSObject+MethodTest.m */; };
 		F4A5572927F5932F004CFE34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A5572827F5932F004CFE34 /* AppDelegate.m */; };
 		F4A5572C27F5932F004CFE34 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A5572B27F5932F004CFE34 /* SceneDelegate.m */; };
 		F4A5572F27F5932F004CFE34 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A5572E27F5932F004CFE34 /* ViewController.m */; };
@@ -21,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F43D6C842851CF3E00C171F1 /* SDSingleDog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSingleDog.m; sourceTree = "<group>"; };
+		F43D6C852851CF3E00C171F1 /* SDSingleDog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSingleDog.h; sourceTree = "<group>"; };
+		F43D6C872851F31D00C171F1 /* NSObject+MethodTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MethodTest.h"; sourceTree = "<group>"; };
+		F43D6C882851F31D00C171F1 /* NSObject+MethodTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MethodTest.m"; sourceTree = "<group>"; };
 		F4A5572427F5932F004CFE34 /* StudyPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A5572727F5932F004CFE34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F4A5572827F5932F004CFE34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +80,10 @@
 		F4A5572627F5932F004CFE34 /* StudyPro */ = {
 			isa = PBXGroup;
 			children = (
+				F43D6C852851CF3E00C171F1 /* SDSingleDog.h */,
+				F43D6C842851CF3E00C171F1 /* SDSingleDog.m */,
+				F43D6C872851F31D00C171F1 /* NSObject+MethodTest.h */,
+				F43D6C882851F31D00C171F1 /* NSObject+MethodTest.m */,
 				F4A5572727F5932F004CFE34 /* AppDelegate.h */,
 				F4A5572827F5932F004CFE34 /* AppDelegate.m */,
 				F4A5572A27F5932F004CFE34 /* SceneDelegate.h */,
@@ -169,11 +179,13 @@
 			files = (
 				F4E3243727FFDBF500B443A0 /* Student.m in Sources */,
 				F4A5574227F593EF004CFE34 /* Person.m in Sources */,
+				F43D6C892851F31D00C171F1 /* NSObject+MethodTest.m in Sources */,
 				F4E3243B28085A6300B443A0 /* TaggedPointTest.m in Sources */,
 				F4A5572F27F5932F004CFE34 /* ViewController.m in Sources */,
 				F4A5572927F5932F004CFE34 /* AppDelegate.m in Sources */,
 				F4E3243127FFD46800B443A0 /* Dog.m in Sources */,
 				F4A5573A27F59334004CFE34 /* main.m in Sources */,
+				F43D6C862851CF3E00C171F1 /* SDSingleDog.m in Sources */,
 				F4A5572C27F5932F004CFE34 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

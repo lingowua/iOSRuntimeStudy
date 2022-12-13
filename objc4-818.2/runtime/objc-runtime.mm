@@ -464,6 +464,12 @@ void environ_init(void)
             if (PrintHelp) _objc_inform("%s: %s", opt->env, opt->help);
             if (PrintOptions && *opt->var) _objc_inform("%s is set", opt->env);
         }
+        
+    }
+    for (size_t i = 0; i < sizeof(Settings)/sizeof(Settings[0]); i++) {
+        const option_t *opt = &Settings[i];
+        _objc_inform("%s: %s", opt->env, opt->help);
+        _objc_inform("%s is set", opt->env);
     }
 }
 
